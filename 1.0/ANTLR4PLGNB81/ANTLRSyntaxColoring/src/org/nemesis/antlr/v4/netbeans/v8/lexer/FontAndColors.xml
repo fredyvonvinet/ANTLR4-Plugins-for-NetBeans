@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE fontscolors PUBLIC
+ "-//NetBeans//DTD Editor Fonts and Colors settings 1.1//EN"
+ "http://www.netbeans.org/dtds/EditorFontsColors-1_1.dtd">
+<fontscolors>
+    <fontcolor name="comment"              foreColor="gray"     default="default"/>
+    <fontcolor name="literal"              foreColor="ff966496" default="default"/>
+    <fontcolor name="lexerCharSet"         foreColor="ff960096" default="default"/>
+    <fontcolor name="keyword"              foreColor="ff000099" default="default"/>
+    <fontcolor name="punctuation"          foreColor="black"    default="default"/>
+    <fontcolor name="identifier"           foreColor="ff990000" default="default"/>
+    <fontcolor name="parserRuleIdentifier" foreColor="ff326432" default="default"/>
+    <fontcolor name="token"                foreColor="ffcb9664" default="default"/>
+</fontscolors>
+

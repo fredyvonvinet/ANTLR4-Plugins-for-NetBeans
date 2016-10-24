@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE library PUBLIC "-//NetBeans//DTD Library Declaration 1.0//EN" "http://www.netbeans.org/dtds/library-declaration-1_0.dtd">
+<library version="1.0">
+    <name>ANTLR_4.5.3_runtime</name>
+    <type>j2se</type>
+    <localizing-bundle>org.nemesis.antlr.v4.netbeans.v8.project.Bundle</localizing-bundle>
+    <volume>
+        <type>classpath</type>
+        <resource>jar:nbinst://org.nemesis.antlr.v4.netbeans.v8.project/libs/antlr-runtime-4.5.3.jar!/</resource>
+    </volume>
+    <volume>
+        <type>src</type>
+        <resource>jar:nbinst://org.nemesis.antlr.v4.netbeans.v8.project/sources/antlr4-4.5.3.zip!/</resource>
+    </volume>
+    <volume>
+        <type>javadoc</type>
+    </volume>
+</library>

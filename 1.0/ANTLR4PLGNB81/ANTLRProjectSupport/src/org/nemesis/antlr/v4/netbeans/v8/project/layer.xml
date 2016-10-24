@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN" "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
+<filesystem>
+    <folder name="org-netbeans-api-project-libraries">
+        <folder name="Libraries">
+            <file name="ANTLR_4.5.3_complete.xml" url="ANTLR_4.5.3_complete.xml"/>
+            <file name="ANTLR_4.5.3_runtime.xml" url="ANTLR_4.5.3_runtime.xml"/>
+        </folder>
+    </folder>
+</filesystem>
