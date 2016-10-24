@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+AutoUpdate-Show-In-Client: true
+OpenIDE-Module: org.nemesis.antlr.v4.netbeans.v8.lexer
+OpenIDE-Module-Layer: org/nemesis/antlr/v4/netbeans/v8/lexer/layer.xml
+OpenIDE-Module-Localizing-Bundle: org/nemesis/antlr/v4/netbeans/v8/lexer/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+
