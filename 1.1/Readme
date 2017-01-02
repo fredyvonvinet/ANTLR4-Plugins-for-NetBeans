@@ -1,0 +1,3 @@
+Second release v1.1 of ANTLR 4 plugin for NetBeans.
+
+Previous release was a module suite. This time, it is packaged as a single NetBeans module.
