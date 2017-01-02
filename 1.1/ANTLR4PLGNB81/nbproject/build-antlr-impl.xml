@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    ====================================================
+    Extension of the NetBeans Java SE Ant build to ANTLR
+    ====================================================
+-->
+<project name="build-antlr-impl">
+    <!--Target to call when just the ANTLR output is needed.-->
+    <target name="antlr"
+            depends="init,-antlr.all"
+            description="Translate the ANTLR 4 grammar files into Java parser, lexer."/>
+
+    <!--Property definitions here will precede reading various properties
+        files, and therefore take precedence.
+    -->    
+    <target name="-antlr.init">
+        <!--Cause tools (javac, javadoc) to include generated sources.
+            do.depend comes from file nbproject/private/private.properties .
+            Maybe it is owned by a property sheet somewhere in the IDE,
+            and we ought not to override it, but where?
+            -->
+        <property name="do.depend" value="true"/>
+    </target>
+    
+    <!--Execute the ANTLR processing of the grammar directories. This results
+        in generated code in "${build.generated.sources.dir}/antlr-output".
+        Token files are written to that exact directory. Java files are
+        written to package folders below that root, according to the
+        location of the .g file below "${src.grammar.dir}". This location
+        comes from a properties set by the IDE. The arrangement of .g files
+        must correspond to the Java package statements they contain.
+    -->
+    <target name="-antlr.all">
+        <antcall target="-antlr">
+            <param name="antlr.generator.src.dir"  value="grammar/grammar_syntax_coloring"/>
+            <param name="antlr.generator.import.dir" value="grammar/imports"/>
+            <param name="antlr.excluded.grammars"  value=""/>
+            <param name="antlr.generator.dest.dir" value="src/org/nemesis/antlr/v4/netbeans/v8/grammar/syntax/coloring/impl"/>
+            <param name="antlr.generated.package"  value="org.nemesis.antlr.v4.netbeans.v8.grammar.syntax.coloring.impl"/>
+        </antcall>
+        <antcall target="-antlr">
+            <param name="antlr.generator.src.dir"  value="grammar/grammar_syntax_checking"/>
+            <param name="antlr.generator.import.dir" value="grammar/imports"/>
+            <param name="antlr.excluded.grammars"  value=""/>
+            <param name="antlr.generator.dest.dir" value="src/org/nemesis/antlr/v4/netbeans/v8/grammar/syntax/checking/impl"/>
+            <param name="antlr.generated.package"  value="org.nemesis.antlr.v4.netbeans.v8.grammar.syntax.checking.impl"/>
+        </antcall>
+        <antcall target="-antlr">
+            <param name="antlr.generator.src.dir"  value="grammar/tokens_syntax_coloring"/>
+            <param name="antlr.generator.import.dir" value="grammar/imports"/>
+            <param name="antlr.excluded.grammars"  value=""/>
+            <param name="antlr.generator.dest.dir" value="src/org/nemesis/antlr/v4/netbeans/v8/tokens/syntax/coloring/impl"/>
+            <param name="antlr.generated.package"  value="org.nemesis.antlr.v4.netbeans.v8.tokens.syntax.coloring.impl"/>
+        </antcall>
+        <antcall target="-antlr">
+            <param name="antlr.generator.src.dir"  value="grammar/tokens_syntax_checking"/>
+            <param name="antlr.generator.import.dir" value="grammar/imports"/>
+            <param name="antlr.excluded.grammars"  value=""/>
+            <param name="antlr.generator.dest.dir" value="src/org/nemesis/antlr/v4/netbeans/v8/tokens/syntax/checking/impl"/>
+            <param name="antlr.generated.package"  value="org.nemesis.antlr.v4.netbeans.v8.tokens.syntax.checking.impl"/>
+        </antcall>
+    </target>
+    
+    <target name="-antlr">
+        <!-- We transform the relative grammar directory name to an absolute one -->
+        <property name="antlr.generator.src.dir.absolutepath"
+                  location="${antlr.generator.src.dir}"/>
+        
+        <mkdir dir="${antlr.generator.dest.dir}"/>
+        
+        <!--Compose file list to pass to ANTLR.-->
+        <!--Method here to deal with paths that contain spaces. Credit to
+            stackoverflow.com question 2148390-->
+        <pathconvert property="antlr.temp.src.list.raw" pathsep="' '" >
+            <!-- Make a list of all the .g4 grammar files in the tree.-->
+            <fileset dir="${antlr.generator.src.dir.absolutepath}"
+                     excludes="${antlr.excluded.grammars}">
+                <include name="**/*.g4" />
+            </fileset>
+            <!--Trim the names to specifications relative to the grammar base
+            directory.-->
+            <mapper type="glob"
+                    from="${antlr.generator.src.dir.absolutepath}${file.separator}*.g4"
+                    to=  "*.g4" />
+        </pathconvert>
+        <!--Last bit of dealing with paths that contain spaces-->
+        <property name="antlr.temp.src.list" value="'${antlr.temp.src.list.raw}'"/>
+
+        <!-- -->
+        <echo>ANTLR will generate analyzer(s) for ${antlr.temp.src.list}</echo>
+        <echo>working relative to ${antlr.generator.src.dir}</echo>
+        <echo>and generate files in ${antlr.generator.dest.dir}</echo>
+        <!--
+        <echoproperties prefix="build" />
+        <echoproperties prefix="javac" />
+        -->
+
+        <!--Destination for generated Java files.-->
+        <mkdir dir="${antlr.generator.dest.dir}"/>
+        <!--Implementation using the ANTLR4 task does not accept multiple
+            source files. So use the java task. When grammar files are
+            identified by relative paths, the ANTLR Tool produces corresponding
+            package-structured output. In this call, ANTLR runs with the
+            grammar base directory as the current directory.
+            -->
+        <java classname="${antlr.generator.classname}"
+              fork="true"
+              dir="${antlr.generator.src.dir}"
+              failonerror="true">
+            <arg value="-package"/>
+            <arg value="${antlr.generated.package}"/>
+            <arg value="-o"/>
+            <arg path="${antlr.generator.dest.dir}"/>
+            <arg value="-lib"/>
+            <arg path="${antlr.generator.import.dir}"/>
+            <arg line="${antlr.temp.src.list}"/>
+            <classpath>
+                <!--Here we need the complete ANTLR release that is the release
+                including the ANTLR code generation tool-->
+                <pathelement path="${antlr.generator.classpath}"/>
+                <pathelement path="${javac.classpath}"/>
+            </classpath>
+            <jvmarg value="-Xmx512M"/>
+        </java>
+    </target>
+</project>
