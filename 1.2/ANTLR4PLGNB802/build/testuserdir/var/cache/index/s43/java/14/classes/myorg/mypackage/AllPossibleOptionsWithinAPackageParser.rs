@@ -1,0 +1,2 @@
+AllPossibleOptionsWithinAPackageParser$Rule1Context
+AllPossibleOptionsWithinAPackageParser
