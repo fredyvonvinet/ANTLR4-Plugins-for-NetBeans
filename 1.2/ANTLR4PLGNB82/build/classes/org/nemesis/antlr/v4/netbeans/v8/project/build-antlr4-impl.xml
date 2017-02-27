@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir=".." name="build-antlr4-impl">
+    <fail message="Please build using Ant 1.9.0 or higher.">
+        <condition>
+            <not>
+                <antversion atleast="1.9.0"/>
+            </not>
+        </condition>
+    </fail>
+    
+    <target name="-antlr4.init"
+            description="Declare the antlr4 task, and load associated properties">
+        <!-- antlr4 ant task requires :
+             1. the jar file where it is defined,
+             2. the jar where a ANTLR 4 runtime distribution can be found 
+                because the antlr4 task uses an ANTLR generated parser for
+                determining file dependence. -->
+        <property name="antlr.ant.task.classpath"
+                  location="${antlr.ant.task.jar}:${antlr.ant.task.antlr.runtime.jar}"/>
+        <taskdef name="antlr4"
+                 classname="org.nemesis.antlr.v4.ant.task.Antlr4"
+                 classpath="${antlr.ant.task.classpath}"/>
+    </target>
+    
+    <!--Target to call when just the ANTLR output is needed.-->
+    <target name="antlr4"
+            depends="-antlr4.init"
+            description="Translate ANTLR v4 grammar files into Java parser, lexer.">
+        <!-- We transform the relative grammar directory name to an absolute one -->
+        <property name="antlr.generator.src.dir.absolutepath"
+                  location="${antlr.generator.src.dir}"/>
+        <!-- We transform the relative destination directory name to an absolute one -->
+        <property name="antlr.generator.dest.dir.absolutepath"
+                  location="${antlr.generator.dest.dir}"/>
+        <!-- We transform the relative destination directory name to an absolute one -->
+        <property name="antlr.generator.src.excluded.absolutepath"
+                  location="${antlr.generator.src.excluded}"/>
+        
+        <!--
+         mandatory attributes: srcdir, destdir
+         optional attributes: excludes, library, listener, visitor, codePackage, atn
+         -->
+        <antlr4 srcdir      = "${antlr.generator.src.dir}"
+                excludes    = "${antlr.generator.src.excluded}"
+                importdir   = "${antlr.generator.import.dir}"
+                destdir     = "${antlr.generator.dest.dir}"
+                library     = "${antlr.generator.jar}"
+                listener    = "${antlr.generator.option.code.listener}"
+                visitor     = "${antlr.generator.option.code.visitor}"
+                codePackage = "${antlr.generator.option.code.package}"
+                atn         = "${antlr.generator.option.atn}">
+        </antlr4>
+    </target>
+</project>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.nemesis.antlr.v4.netbeans.v8/1">
+    <module_version install_time="1488199582812" last="true" origin="installer" specification_version="1.2">
+        <file crc="1651195854" name="config/Modules/org-nemesis-antlr-v4-netbeans-v8.xml"/>
+        <file crc="3370851676" name="libs/antlr-4.6-complete.jar"/>
+        <file crc="1788681296" name="libs/antlr-runtime-4.6.jar"/>
+        <file crc="3637798300" name="modules/ext/antlr-4.6-source.zip"/>
+        <file crc="1788681296" name="modules/ext/antlr-runtime-4.6.jar"/>
+        <file crc="3846593207" name="modules/ext/bcel-6.0-bin.zip"/>
+        <file crc="4097944758" name="modules/ext/bcel-6.0.jar"/>
+        <file crc="710316071" name="modules/ext/maven-model-3.0.5.jar"/>
+        <file crc="3704861887" name="modules/org-nemesis-antlr-v4-netbeans-v8.jar"/>
+        <file crc="3637798300" name="sources/antlr-4.6-source.zip"/>
+    </module_version>
+</module>
