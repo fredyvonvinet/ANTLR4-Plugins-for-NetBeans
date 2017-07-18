@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN"
+                            "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
+<filesystem>
+    <folder name="Editors">
+        <folder name="text">
+            <folder name="x-g4">
+                <attr name="SystemFileSystem.localizingBundle"
+                      stringvalue="org.nemesis.antlr.v4.netbeans.v8.Bundle"/>
+                <folder name="FontsColors">
+                    <folder name="NetBeans">
+                        <folder name="Defaults">
+                            <file name="FontAndColors.xml" url="grammar/code/coloring/FontAndColors.xml">
+                                <attr name="SystemFileSystem.localizingBundle"
+                                      stringvalue="org.nemesis.antlr.v4.netbeans.v8.Bundle"/>
+                            </file>
+                        </folder>
+                    </folder>
+                </folder>
+                <file name="g4.ErrorBadgingUpdater.instance">
+                    <attr name="instanceClass"
+                          stringvalue="org.nemesis.antlr.v4.netbeans.v8.grammar.file.ErrorBadgingUpdater$Factory"/>
+                </file>
+            </folder>
+            <folder name="x-tokens">
+                <attr name="SystemFileSystem.localizingBundle"
+                      stringvalue="org.nemesis.antlr.v4.netbeans.v8.Bundle"/>
+                <folder name="FontsColors">
+                    <folder name="NetBeans">
+                        <folder name="Defaults">
+                            <file name="FontAndColors.xml" url="tokens/code/coloring/FontAndColors.xml">
+                                <attr name="SystemFileSystem.localizingBundle"
+                                      stringvalue="org.nemesis.antlr.v4.netbeans.v8.Bundle"/>
+                            </file>
+                        </folder>
+                    </folder>
+                </folder>
+            </folder>
+        </folder>
+    </folder>
+    <folder name="org-netbeans-api-project-libraries">
+        <folder name="Libraries">
+            <file name="ANTLR_4.6_complete.xml"
+                  url="ANTLR_4.6_complete.xml"/>
+            <file name="ANTLR_4.6_runtime.xml"
+                  url="ANTLR_4.6_runtime.xml"/>
+        </folder>
+    </folder>
+</filesystem>
